@@ -9,27 +9,28 @@ export default function Content() {
     const [showMessage, setShowMessage] = React.useState(false)
 
     function addIngredient(formData) {
-        const ingredient = formData.get('ingredient')
-        if(ingredient.length < 4) {
+        const ingredient = formData.get('ingredient').trim().toLowerCase()
+        if(ingredient.length < 3) {
            return setShowMessage(true)
         } else {
             setShowMessage(false)
         }
 
-        setIngredients(prevIngredients => (
-            [
-                ...prevIngredients,
-                ingredient
-            ]
-        ))
+        if(!ingredients.includes(ingredient)) {
+            setIngredients(prevIngredients => (
+                [
+                    ...prevIngredients,
+                    ingredient
+                ]
+            ))
+        }
     }
 
     const ingredientEls = ingredients.map(ingredient => (
-        <li key={ingredient}>{ingredient}</li>
+        <li key={ingredient}>{ingredient[0].toUpperCase() + ingredient.slice(1)}</li>
     ))
 
     async function getRecipeFromAi() {
-        console.log('ingredinets', ingredients)
         const res = await generateRecipe(ingredients)
         setRecipe(res.content)
     }
@@ -46,10 +47,11 @@ export default function Content() {
                         required
                         aria-required="true"
                         autoComplete='off'
+                        pattern='[a-zA-Z]+'
                         />
                     <button type="submit" className="add-ingredient-btn">Add ingredient</button>
                 </form>
-                <p style={{color: 'gray', marginTop: '0.5em', fontStyle: "italic", fontSize: "0.88rem"}}>Enter at least 4 ingredients to get a recipe.</p>
+                <p className='ingredients-message'>Enter at least 4 ingredients to get a recipe.</p>
                 {
                     showMessage ? <p className='three-char-message'>Ingredient name is too short (min. 3 characters).</p> : null
                 }
@@ -69,7 +71,9 @@ export default function Content() {
                     }
                 </section> : null
             }
-            {recipe ? <ClaudeRecipe recipe={recipe} /> : null}
+            {recipe ? 
+                <ClaudeRecipe recipe={recipe}/> 
+            : null}
         </main>
     )
 }

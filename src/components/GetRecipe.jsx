@@ -1,3 +1,5 @@
+import { useFormStatus } from 'react-dom'
+
 export default function GetRecipe({toggleRecipeShown}) {
     return (
         <div className="get-recipe-container">
@@ -5,7 +7,26 @@ export default function GetRecipe({toggleRecipeShown}) {
                 <h2>Ready for a recipe?</h2>
                 <p>Generate a recipe from your list of ingredients</p>
             </div>
-            <button onClick={toggleRecipeShown} className="get-recipe-btn">Get a recipe</button>
+            <form action={toggleRecipeShown}>
+                <Submit />
+            </form>
         </div>
+    )
+}
+
+function Submit() {
+    const { pending } = useFormStatus();
+
+    return (
+        <>
+        <button 
+            type='submit' 
+            className="get-recipe-btn" 
+            disabled={pending}
+            style={{pointerEvents: `${pending ? 'none' : ""}`}}
+            >
+            {pending ? "Getting a recipe..." :"Get a recipe"}
+        </button>
+        </>
     )
 }
