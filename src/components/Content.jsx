@@ -52,9 +52,12 @@ export default function Content() {
     // Pass ingredients to the function and generate a recipe using AI
     async function getRecipeFromAi() {
         const res = await generateRecipe(ingredients)
-        setRecipe(res.content)
+        
+        if(res.content){
+            setRecipe(res.content)
+            setIsRecipeGenerated(true)
+        }
 
-        !!recipe && setIsRecipeGenerated(true)
     }
 
     return (
@@ -94,7 +97,7 @@ export default function Content() {
                         // Show 'Get Recipe' button once at least 4 ingredients are entered
                         ingredients.length > 3 ? 
                         <GetRecipe 
-                            toggleRecipeShown={getRecipeFromAi}
+                            generateRecipe={getRecipeFromAi}
                             isRecipeGenerated={isRecipeGenerated}
                         /> : null
                     }

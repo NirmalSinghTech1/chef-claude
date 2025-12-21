@@ -1,14 +1,14 @@
 import { useFormStatus } from 'react-dom'
 
 // Handle click event for 'Get Recipe' button
-export default function GetRecipe({toggleRecipeShown, isRecipeGenerated}) {
+export default function GetRecipe({generateRecipe, isRecipeGenerated}) {
     return (
         <div className="get-recipe-container">
             <div>
                 <h2>Ready for a recipe?</h2>
                 <p>Generate a recipe from your list of ingredients</p>
             </div>
-            <form action={toggleRecipeShown}>
+            <form action={generateRecipe}>
                 <Submit isRecipeGenerated={isRecipeGenerated} />
             </form>
         </div>
