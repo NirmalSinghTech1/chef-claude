@@ -1,5 +1,6 @@
 import { InferenceClient } from "@huggingface/inference";
 
+// Logic to generate recipe based provided ingredients
 const client = new InferenceClient(import.meta.env.VITE_HF_TOKEN);
 
 export default async function generateRecipe(ingredients) {
@@ -11,7 +12,7 @@ export default async function generateRecipe(ingredients) {
             messages: [
                 {
                     role: "system",
-                    content: "You are a professional chef. Your task is to generate a recipe based on the provided ingredients. Do not include ingredients that are not listed, though you may assume basic pantry staples like salt, water, or oil if absolutely necessary for cooking. Always respond in Markdown format."
+                    content: "You are a professional chef. Your task is to generate a recipe based on the provided ingredients. Do not include ingredients that are not listed, though you may assume basic pantry staples like salt, water, or oil if absolutely necessary for cooking. If the ingredients provided are not edible, are nonsensical, or do not exist, respond ONLY with the exact phrase: 'Ingredient(s) not recognized. Enter valid ones.' Always respond in Markdown format."
                 },
                 {
                     role: "user",

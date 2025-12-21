@@ -1,6 +1,7 @@
 import { useFormStatus } from 'react-dom'
 
-export default function GetRecipe({toggleRecipeShown}) {
+// Handle click event for 'Get Recipe' button
+export default function GetRecipe({toggleRecipeShown, isRecipeGenerated}) {
     return (
         <div className="get-recipe-container">
             <div>
@@ -8,13 +9,14 @@ export default function GetRecipe({toggleRecipeShown}) {
                 <p>Generate a recipe from your list of ingredients</p>
             </div>
             <form action={toggleRecipeShown}>
-                <Submit />
+                <Submit isRecipeGenerated={isRecipeGenerated} />
             </form>
         </div>
     )
 }
 
-function Submit() {
+// Get Recipe Button
+function Submit({isRecipeGenerated}) {
     const { pending } = useFormStatus();
 
     return (
@@ -22,10 +24,10 @@ function Submit() {
         <button 
             type='submit' 
             className="get-recipe-btn" 
-            disabled={pending}
+            disabled={pending || isRecipeGenerated}
             style={{pointerEvents: `${pending ? 'none' : ""}`}}
             >
-            {pending ? "Getting a recipe..." :"Get a recipe"}
+            {pending ? "Getting a recipe..." : "Get a recipe"}
         </button>
         </>
     )
