@@ -54,6 +54,8 @@ button {
   background-color: #1a1a1a;
   cursor: pointer;
   transition: all 0.25s;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 button:hover {
   opacity: 0.8;
