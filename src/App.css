@@ -35,7 +35,7 @@
 
 .form .add-ingredient-btn {
   background-color: black;
-  min-width: 145px;
+  min-width: 150px;
   max-width: 100%;
 }
 
@@ -185,6 +185,10 @@ ul > li, ol > li {
 
 /* Media queries */
 @media (max-width: 470px) {
+  button {
+    font-weight: 600;
+  }
+
   .user-input-form-container {
     height: 122px;
     margin-top: 1em;
