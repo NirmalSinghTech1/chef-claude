@@ -16,6 +16,11 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
+html {
+  -webkit-text-size-adjust: 100%;
+}
+
+
 h1, h2, p {
   margin: 0;
   padding: 0;
@@ -54,8 +59,8 @@ button {
   background-color: #1a1a1a;
   cursor: pointer;
   transition: all 0.25s;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  -webkit-appearance: none;
+  appearance: none;  
 }
 button:hover {
   opacity: 0.8;
