@@ -11,7 +11,7 @@ export default function ClaudeRecipe(props) {
             bahavior: 'smooth',
             block: 'start'
         });
-    }, [])
+    }, [props.recipe])
     
     return (
         <section className='recipe-container' ref={recipeRef}>
