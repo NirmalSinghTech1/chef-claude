@@ -35,8 +35,9 @@
 
 .form .add-ingredient-btn {
   background-color: black;
-  min-width: 150px;
+  min-width: 160px;
   max-width: 100%;
+  color: blue;
 }
 
 .add-ingredient-btn::before {
