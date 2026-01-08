@@ -37,7 +37,7 @@
   background-color: black;
   min-width: 160px;
   max-width: 100%;
-  color: blue;
+  color: #ffffff;
 }
 
 .add-ingredient-btn::before {
